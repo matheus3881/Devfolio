@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+
+/* Note: theme toggle uses `.light` class on <html> (dark is the default in :root).
+   The Tailwind `dark:` variant is intentionally NOT defined here — use the `.light`
+   selector in :root / .light blocks instead. */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist), 'Geist Fallback', sans-serif;
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback', monospace;
+  --font-display: var(--font-archivo), 'Arial Narrow', sans-serif;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* ─── Dark mode (default) ─── */
+:root {
+  color-scheme: dark;
+
+  --background: oklch(0.10 0.005 255);
+  --foreground: oklch(0.96 0.006 255);
+  --card: oklch(0.14 0.008 255);
+  --card-foreground: oklch(0.96 0.006 255);
+  --popover: oklch(0.14 0.008 255);
+  --popover-foreground: oklch(0.96 0.006 255);
+
+  /* Accent coral ~#eb4d6d */
+  --primary: oklch(0.65 0.20 10);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.18 0.008 255);
+  --secondary-foreground: oklch(0.90 0.006 255);
+  --muted: oklch(0.18 0.008 255);
+  --muted-foreground: oklch(0.55 0.018 255);
+
+  --accent: oklch(0.22 0.04 10);
+  --accent-foreground: oklch(0.90 0.04 10);
+
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.65 0.20 10);
+
+  --radius: 0.5rem;
+}
+
+/* ─── Light mode ─── */
+.light {
+  color-scheme: light;
+
+  --background: oklch(0.98 0.004 255);
+  --foreground: oklch(0.14 0.015 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.14 0.015 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.14 0.015 255);
+
+  --primary: oklch(0.55 0.20 10);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.94 0.006 255);
+  --secondary-foreground: oklch(0.20 0.015 255);
+  --muted: oklch(0.94 0.006 255);
+  --muted-foreground: oklch(0.48 0.018 255);
+
+  --accent: oklch(0.92 0.04 10);
+  --accent-foreground: oklch(0.30 0.12 10);
+
+  --border: oklch(0.14 0.015 255 / 12%);
+  --input: oklch(0.14 0.015 255 / 14%);
+  --ring: oklch(0.55 0.20 10);
+}
+
+/* ─── Base ─── */
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground antialiased; font-family: var(--font-sans); }
+  ::selection { background: var(--primary); color: var(--primary-foreground); }
+
+  /* Display headings use Archivo */
+  h1, h2, h3 { font-family: var(--font-display); }
+}
+
+/* ─── Hero fade-up (CSS-only, initial load) ─── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up { animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-up:nth-child(2) { animation-delay: 80ms; }
+.animate-fade-up:nth-child(3) { animation-delay: 160ms; }
+.animate-fade-up:nth-child(4) { animation-delay: 240ms; }
+.animate-fade-up:nth-child(5) { animation-delay: 320ms; }
+
+/* ─── Scroll-reveal (driven by IntersectionObserver in JS) ─── */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal { opacity: 0; }
+
+.reveal.is-visible {
+  animation: reveal-up 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger for child groups */
+.reveal-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.reveal-stagger > *:nth-child(2) { animation-delay: 80ms; }
+.reveal-stagger > *:nth-child(3) { animation-delay: 160ms; }
+.reveal-stagger > *:nth-child(4) { animation-delay: 240ms; }
+.reveal-stagger > *:nth-child(5) { animation-delay: 320ms; }
+.reveal-stagger > *:nth-child(6) { animation-delay: 400ms; }
+
+/* ─── Ping animation for availability badge ─── */
+@keyframes ping-slow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50%       { transform: scale(1.6); opacity: 0; }
+}
+.animate-ping-slow { animation: ping-slow 2s ease-in-out infinite; }
+
+/* ─── Reduced motion overrides ─── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; }
+}
+
