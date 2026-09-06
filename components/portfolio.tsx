@@ -316,7 +316,7 @@ function Hero() {
             <FaGithub aria-hidden="true" className="size-5" />
           </a>
           <a
-            href="https://linkedin.com/in/matheus-santos"
+            href="https://www.linkedin.com/in/matheus-santos-de-lima-84916830b"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn de Matheus Santos"
@@ -579,7 +579,7 @@ function Contact() {
             Enviar mensagem
           </a>
           <a
-            href="https://linkedin.com/in/matheus-santos"
+            href="https://www.linkedin.com/in/matheus-santos-de-lima-84916830b"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/40 hover:text-primary focus-visible:outline-offset-2 focus-visible:outline-primary"
