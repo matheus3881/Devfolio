@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="Matheus Santos">
+  <style>
+    .bg  { fill: #0d0d13; }
+    .dot { fill: #eb4d6d; }
+
+    @media (prefers-color-scheme: light) {
+      .bg  { fill: #f5f5f8; }
+      .dot { fill: #d63a57; }
+    }
+  </style>
+
+  <!-- Background: rounded square -->
+  <rect class="bg" width="32" height="32" rx="5"/>
+
+  <!--
+    M — geometric polyline, condensed
+    Range x: 4–16 | y: 8–24
+  -->
+  <polyline
+    points="4,24 4,8 10,17 16,8 16,24"
+    stroke="#f0f0f2"
+    stroke-width="2.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+
+  <!--
+    S — two opposing arcs
+    Range x: 18–27.5 | y: 8–24
+  -->
+  <path
+    d="M27,11.5 C27,9.5 25.5,8 23,8 C20.5,8 18.5,9.5 18.5,11.5 C18.5,13.5 20,14.5 23,15.5 C26,16.5 27.5,17.8 27.5,20 C27.5,22.4 25.5,24 23,24 C20.5,24 18.5,22.4 18.5,20"
+    stroke="#f0f0f2"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+
+  <!-- Coral accent dot -->
+  <circle class="dot" cx="29" cy="25.5" r="2.2"/>
+</svg>

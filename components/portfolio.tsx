@@ -8,8 +8,6 @@ import {
   Moon,
   Sun,
   X,
-  // Github,
-  // Linkedin,
 } from 'lucide-react'
 
 
@@ -39,13 +37,6 @@ const projects: Project[] = [
       'Conjunto de aplicações de inteligência artificial integradas em uma única plataforma unificada.',
     technologies: ['Python', 'IA aplicada'],
     href: 'https://github.com/matheus3881/multi_app_ia',
-  },
-  {
-    name: 'Projeto Jucerja',
-    description:
-      'Sistema desenvolvido para a Jucerja com foco em automação de processos e consulta de dados empresariais.',
-    technologies: ['TypeScript'],
-    href: 'https://github.com/matheus3881/projeto-jucerja',
   },
   {
     name: 'Academia Inovação',

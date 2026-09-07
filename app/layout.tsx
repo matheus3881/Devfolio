@@ -3,13 +3,13 @@ import { Geist, Geist_Mono, Archivo } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' });
 const archivo = Archivo({
   subsets: ['latin'],
   variable: '--font-archivo',
   weight: ['700', '800', '900'],  // only weights used: bold h2/h3, black h1
-})
+});
 
 export const metadata: Metadata = {
   title: 'Matheus Santos — Desenvolvedor Full Stack',
@@ -28,13 +28,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
+      // SVG — primary, adaptive dark/light via CSS media query inside the SVG
       { url: '/icon.svg', type: 'image/svg+xml' },
+      // PNG fallbacks for OS/browser contexts that don't support SVG favicons
+      // { url: '/icon-dark-32x32.png',  sizes: '32x32', media: '(prefers-color-scheme: dark)' },
+      // { url: '/icon-light-32x32.png', sizes: '32x32', media: '(prefers-color-scheme: light)' },
     ],
-    apple: '/apple-icon.png',
+    // apple: '/apple-icon.png',
   },
-}
+};
 
 export const viewport: Viewport = {
   colorScheme: 'dark light',
@@ -42,7 +44,7 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: dark)', color: '#0d0d0d' },
     { media: '(prefers-color-scheme: light)', color: '#f8f8f6' },
   ],
-}
+};
 
 export default function RootLayout({
   children,
