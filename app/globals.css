@@ -141,6 +141,18 @@
 }
 .animate-ping-slow { animation: ping-slow 2s ease-in-out infinite; }
 
+/* ─── WIP project row — shimmer sweep along the top border ─── */
+/* translateX only → GPU-composited, no layout/paint cost             */
+@keyframes wip-shimmer {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateX(200%); opacity: 0; }
+}
+.animate-wip-shimmer {
+  animation: wip-shimmer 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 /* ─── Scroll-line (Hero vertical indicator, estilo Majd) ─── */
 @keyframes scroll-line {
   0%   { transform: translateY(-100%); opacity: 0; }
