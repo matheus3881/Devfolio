@@ -8,11 +8,11 @@ import {
   Moon,
   Sun,
   X,
-
-  ChevronDown,
+  // Github,
+  // Linkedin,
 } from 'lucide-react'
 
-import { FaLinkedin, FaGithub  } from 'react-icons/fa';
+
 
 /* ─── Types ─── */
 type Project = {
@@ -257,84 +257,174 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl flex-col justify-center px-5 py-24 lg:px-8 lg:py-32"
+      className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between overflow-hidden border-b border-border/60 px-5 py-10 lg:px-8 lg:py-12"
     >
-      {/* Availability badge */}
-      <div className="animate-fade-up mb-8 inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-medium text-primary">
-        <span className="relative flex h-2 w-2" aria-hidden="true">
-          <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-        </span>
-        Disponível para projetos
-      </div>
-
-      {/* Headline */}
-      <h1 className="animate-fade-up text-[clamp(3rem,9vw,7rem)] font-black leading-[0.92] tracking-[-0.04em] text-foreground">
-        Matheus
-        <br />
-        <span className="text-muted-foreground">Santos</span>
-      </h1>
-
-      {/* Sub-headline */}
-      <p className="animate-fade-up mt-8 max-w-xl text-pretty text-xl leading-relaxed tracking-tight text-muted-foreground sm:text-2xl">
-        Desenvolvedor Full Stack focado em{' '}
-        <span className="font-semibold text-foreground">IA e automação.</span>
-      </p>
-
-      {/* Description */}
-      <p className="animate-fade-up mt-4 max-w-lg text-base leading-7 text-muted-foreground">
-        Construo produtos digitais e sistemas inteligentes que transformam problemas
-        complexos em experiências simples.
-      </p>
-
-      {/* CTA row */}
-      <div className="animate-fade-up mt-10 flex flex-wrap items-center gap-3">
-        <a
-          href="#projetos"
-          className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90  focus-visible:outline-offset-2 focus-visible:outline-primary"
+      {/* ── Top row: badge (left) + role tag (right) ── */}
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
+        {/* Availability badge */}
+        <div
+          className="animate-fade-up inline-flex items-center gap-2.5 rounded-full border border-primary/25 bg-primary/8 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em] text-primary"
+          style={{ animationDelay: '0ms' }}
         >
-          Ver projetos
-          <ArrowUpRight aria-hidden="true" className="size-4" />
-        </a>
+          <span className="relative flex h-2 w-2" aria-hidden="true">
+            <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-primary opacity-70" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+          </span>
+          Disponível para projetos
+        </div>
 
-        <a
-          href="mailto:contato@matheus-santos.dev"
-          className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/40 hover:text-primary  focus-visible:outline-offset-2 focus-visible:outline-primary"
+        {/* Role tag */}
+        <div
+          className="animate-fade-up hidden items-center gap-3 md:flex"
+          style={{ animationDelay: '60ms' }}
         >
-          Contato
-          <Mail aria-hidden="true" className="size-4" />
-        </a>
-
-        <div className="ml-1 flex items-center gap-1 border-l border-border pl-4">
-          <a
-            href="https://github.com/matheus3881"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub de Matheus Santos"
-            className="rounded-md p-2.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
-          >
-            <FaGithub aria-hidden="true" className="size-5" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/matheus-santos-de-lima-84916830b"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn de Matheus Santos"
-            className="rounded-md p-2.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
-          >
-            <FaLinkedin aria-hidden="true" className="size-5" />
-          </a>
+          <span className="h-px w-8 bg-border/80" aria-hidden="true" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+            Full Stack · IA · Automação
+          </span>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* ── Display name — fills the center of the viewport ── */}
+      <div className="mx-auto w-full max-w-6xl flex-1 flex flex-col justify-center py-6 lg:py-0">
+        <h1
+          className="animate-fade-up font-black leading-[0.88] tracking-[-0.055em] text-foreground"
+          style={{
+            fontSize: 'clamp(3.8rem, 13.5vw, 11rem)',
+            animationDelay: '120ms',
+          }}
+          aria-label="Matheus Santos"
+        >
+          {/* "Matheus" in full opacity, "Santos" faded — classic editorial split */}
+          <span className="block">Matheus</span>
+          <span className="block text-foreground/20">Santos</span>
+        </h1>
+
+        {/* Thin rule between name and bottom info bar */}
+        <div
+          className="animate-fade-up mt-8 h-px w-full bg-border/50 lg:mt-10"
+          style={{ animationDelay: '180ms' }}
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* ── Bottom info bar: description · social handle · CTAs ── */}
+      <div className="mx-auto w-full max-w-6xl">
+        <div className="flex flex-col gap-6 pt-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10 lg:pt-0">
+
+          {/* Description */}
+          <p
+            className="animate-fade-up max-w-sm text-sm leading-[1.8] text-muted-foreground lg:max-w-xs"
+            style={{ animationDelay: '220ms' }}
+          >
+            Desenvolvo produtos digitais e sistemas inteligentes que transformam
+            problemas complexos em experiências simples — com foco em{' '}
+            <span className="font-semibold text-foreground">IA e LLMs</span>.
+          </p>
+
+          {/* Social handle — centered on desktop */}
+          <div
+            className="animate-fade-up hidden flex-col items-center gap-2 lg:flex"
+            style={{ animationDelay: '260ms' }}
+            aria-label="Handle nas redes sociais"
+          >
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40">
+              @matheus3881
+            </span>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://github.com/matheus3881"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub de Matheus Santos"
+                className="font-mono text-[11px] text-muted-foreground/50 underline-offset-4 transition-colors hover:text-primary hover:underline"
+              >
+                GitHub
+              </a>
+              <span className="h-1 w-1 rounded-full bg-border" aria-hidden="true" />
+              <a
+                href="https://www.linkedin.com/in/matheus-santos-de-lima-84916830b"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn de Matheus Santos"
+                className="font-mono text-[11px] text-muted-foreground/50 underline-offset-4 transition-colors hover:text-primary hover:underline"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          {/* CTA buttons */}
+          <div
+            className="animate-fade-up flex flex-wrap items-center gap-3"
+            style={{ animationDelay: '300ms' }}
+          >
+            <a
+              href="#projetos"
+              className="group inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Ver projetos
+              <ArrowUpRight
+                aria-hidden="true"
+                className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
+            <a
+              href="mailto:contato@matheus-santos.dev"
+              className="inline-flex items-center gap-2 rounded-lg border border-border/80 bg-transparent px-6 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:border-primary/50 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Contato
+              <Mail aria-hidden="true" className="size-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Mobile-only: role tag + social links below CTAs */}
+        <div
+          className="animate-fade-up mt-8 flex flex-col gap-3 border-t border-border/40 pt-6 md:hidden"
+          style={{ animationDelay: '340ms' }}
+        >
+          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60">
+            Full Stack · IA · Automação
+          </span>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/matheus3881"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[11px] text-muted-foreground/50 transition-colors hover:text-primary"
+            >
+              GitHub
+            </a>
+            <span className="h-1 w-1 rounded-full bg-border" aria-hidden="true" />
+            <a
+              href="https://www.linkedin.com/in/matheus-santos-de-lima-84916830b"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[11px] text-muted-foreground/50 transition-colors hover:text-primary"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Scroll indicator — vertical line, right edge, desktop only ── */}
       <a
         href="#sobre"
         aria-label="Rolar para a seção Sobre"
-        className="animate-fade-up absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-muted-foreground/50 transition-colors hover:text-muted-foreground"
+        className="animate-fade-up absolute bottom-10 right-8 hidden flex-col items-center gap-3 lg:flex"
+        style={{ animationDelay: '400ms' }}
       >
-        <span className="font-mono text-[10px] uppercase tracking-widest">scroll</span>
-        <ChevronDown aria-hidden="true" className="size-4 animate-bounce" />
+        <span
+          className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground/30"
+          style={{ writingMode: 'vertical-rl' }}
+        >
+          scroll
+        </span>
+        <span className="relative h-14 w-px overflow-hidden bg-border/30" aria-hidden="true">
+          <span className="animate-scroll-line absolute left-0 top-0 h-1/2 w-full bg-primary/50" />
+        </span>
       </a>
     </section>
   )
@@ -344,48 +434,136 @@ function Hero() {
 function About() {
   return (
     <section id="sobre" className="border-t border-border/60">
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 py-24 lg:grid-cols-[1fr_1.4fr] lg:px-8 lg:py-32">
-        {/* Left */}
-        <div className="reveal">
-          <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
-            01 / Sobre
-          </p>
-          <h2 className="mt-5 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-            Tecnologia
-            <br />
-            com intenção.
-          </h2>
+      <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
 
-          {/* Stats */}
-          <div className="mt-10 grid grid-cols-3 gap-4" role="list" aria-label="Estatísticas">
-            {[
-              { number: '3+', label: 'Anos' },
-              { number: '10+', label: 'Projetos' },
-              { number: '5+', label: 'Tecnologias' },
-            ].map(({ number, label }) => (
-              <div key={label} role="listitem" className="flex flex-col gap-0.5 border-l-2 border-primary pl-3">
-                <span className="text-2xl font-black text-foreground">{number}</span>
-                <span className="font-mono text-xs text-muted-foreground">{label}</span>
-              </div>
-            ))}
+        {/* ── Row 1: section label + title split layout ── */}
+        <div className="reveal flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+
+          {/* Left: eyebrow + display heading */}
+          <div className="lg:max-w-[54%]">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
+              01 / Sobre
+            </p>
+            <h2
+              className="mt-5 font-black leading-[0.92] tracking-[-0.04em] text-foreground"
+              style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)' }}
+            >
+              Tecnologia
+              <br />
+              <span className="text-foreground/25">com intenção.</span>
+            </h2>
+          </div>
+
+          {/* Right: short tagline + CTA link */}
+          <div className="flex flex-col gap-5 lg:max-w-[38%] lg:pb-2">
+            <div className="flex items-start gap-3">
+              <span className="mt-2 h-px w-8 shrink-0 bg-primary/50" aria-hidden="true" />
+              <p className="text-sm leading-7 text-muted-foreground">
+                Desenvolvedor Full Stack com foco em{' '}
+                <span className="font-semibold text-foreground">IA aplicada</span>{' '}
+                e construção de produtos digitais que resolvem problemas reais.
+              </p>
+            </div>
+            <a
+              href="#contato"
+              className="group inline-flex w-fit items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-primary transition-opacity hover:opacity-70"
+            >
+              Fale comigo
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </a>
           </div>
         </div>
 
-        {/* Right */}
-        <div className="reveal flex max-w-2xl flex-col gap-5 text-base leading-7 text-muted-foreground">
-          <p>
-            Sou um desenvolvedor apaixonado por criar soluções que unem engenharia,
-            produto e inteligência artificial.
-          </p>
-          <p>
-            Minha trajetória passa por backend, automação e construção de interfaces.
-            Hoje, meu foco está em explorar como IA e LLMs podem tornar processos
-            mais eficientes e experiências mais humanas.
-          </p>
-          <p>
-            Gosto de trabalhar em problemas difíceis onde a tecnologia tem impacto real.
-          </p>
+        {/* ── Divider ── */}
+        <div className="reveal my-14 h-px w-full bg-border/60" aria-hidden="true" />
+
+        {/* ── Row 2: body text (editorial, large leading) + sidebar stats ── */}
+        <div className="reveal grid gap-14 lg:grid-cols-[1fr_260px] lg:gap-20">
+
+          {/* Body copy */}
+          <div className="flex flex-col gap-6">
+            <p className="font-display text-xl font-medium leading-[1.55] text-foreground sm:text-2xl">
+              Sou um desenvolvedor apaixonado por criar soluções que unem{' '}
+              <em className="not-italic text-primary">engenharia</em>,{' '}
+              <em className="not-italic text-primary">produto</em> e{' '}
+              <em className="not-italic text-primary">inteligência artificial</em>.
+            </p>
+            <p className="text-base leading-[1.85] text-muted-foreground">
+              Minha trajetória passa por backend, automação e construção de interfaces.
+              Hoje, meu foco está em explorar como{' '}
+              <span className="relative inline-block text-foreground">
+                IA e LLMs
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-0.5 left-0 h-px w-full bg-primary/40"
+                />
+              </span>{' '}
+              podem tornar processos mais eficientes e experiências mais humanas.
+            </p>
+            <p className="text-base leading-[1.85] text-muted-foreground">
+              Gosto de trabalhar em problemas difíceis onde a tecnologia tem impacto real
+              — do primeiro commit ao produto em produção.
+            </p>
+
+            {/* ── Values / traits grid ── */}
+            <div
+              className="mt-4 grid grid-cols-1 gap-px border border-border/60 sm:grid-cols-3"
+              role="list"
+              aria-label="Valores e abordagem"
+            >
+              {[
+                { title: 'Foco no produto', body: 'Código que serve ao usuário, não ao ego do dev.' },
+                { title: 'IA com propósito', body: 'LLMs e agentes como ferramentas, não como fim.' },
+                { title: 'Iteração rápida', body: 'Lançar cedo, medir, melhorar. Sempre.' },
+              ].map(({ title, body }) => (
+                <div
+                  key={title}
+                  role="listitem"
+                  className="group flex flex-col gap-2.5 bg-secondary/10 p-5 transition-colors duration-300 hover:bg-accent/20"
+                >
+                  <span className="flex items-center gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="h-1.5 w-1.5 rounded-full bg-primary transition-transform duration-300 group-hover:scale-125"
+                    />
+                    <span className="text-sm font-semibold text-foreground">{title}</span>
+                  </span>
+                  <p className="text-xs leading-[1.7] text-muted-foreground">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Sidebar: stats */}
+          <aside aria-label="Estatísticas" className="flex flex-row gap-6 lg:flex-col lg:gap-0">
+            {[
+              { number: '3+', label: 'Anos de experiência', sub: 'Backend · Frontend · IA' },
+              { number: '10+', label: 'Projetos entregues', sub: 'Open-source & profissionais' },
+              { number: '5+', label: 'Stacks dominadas', sub: 'TypeScript, Python, LLMs…' },
+            ].map(({ number, label, sub }, i) => (
+              <div
+                key={label}
+                className={`flex flex-1 flex-col gap-1 py-7 lg:flex-none ${
+                  i > 0 ? 'border-t border-border/60' : ''
+                }`}
+              >
+                <span className="font-display text-4xl font-black leading-none tracking-tight text-foreground lg:text-5xl">
+                  {number}
+                </span>
+                <span className="mt-1 text-xs font-semibold text-foreground/80">{label}</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground/60">
+                  {sub}
+                </span>
+              </div>
+            ))}
+          </aside>
         </div>
+
       </div>
     </section>
   )
@@ -393,158 +571,295 @@ function About() {
 
 /* ─── Skills ─── */
 function Skills() {
+  // Flatten all skills for the marquee strip
+  const allSkills = skillGroups.flatMap((g) => g.skills)
+
   return (
     <section id="skills" className="border-t border-border/60">
       <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
-        <div className="reveal">
-          <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
-            02 / Skills
-          </p>
-          <h2 className="mt-5 text-3xl font-black tracking-tight sm:text-4xl">
-            Stack técnica.
-          </h2>
+
+        {/* ── Split header: title left | description right ── */}
+        <div className="reveal flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-24">
+
+          {/* Left: sticky label + heading */}
+          <div className="lg:w-[38%] lg:shrink-0">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
+              02 / Skills
+            </p>
+            <h2 className="mt-4 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+              Stack
+              <br />
+              <span className="text-foreground/30">técnica.</span>
+            </h2>
+            <p className="mt-6 text-sm leading-7 text-muted-foreground">
+              Ferramentas e tecnologias que uso para transformar
+              ideias em produtos reais — do backend à IA.
+            </p>
+
+            {/* Total count */}
+            <div className="mt-8 flex items-center gap-3">
+              <span className="font-mono text-3xl font-black text-foreground">
+                {allSkills.length}
+              </span>
+              <span className="font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">
+                tecnologias
+              </span>
+            </div>
+          </div>
+
+          {/* Right: editorial skill list by category */}
+          <div className="flex-1">
+            {skillGroups.map((group, gi) => (
+              <div
+                key={group.label}
+                className={`flex flex-col gap-4 py-7 sm:flex-row sm:gap-10 ${
+                  gi > 0 ? 'border-t border-border/60' : ''
+                }`}
+              >
+                {/* Category label */}
+                <div className="w-28 shrink-0">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60">
+                    {group.label}
+                  </span>
+                </div>
+
+                {/* Skill items — inline, separated by ·  */}
+                <ul
+                  role="list"
+                  className="flex flex-wrap items-center gap-x-5 gap-y-3"
+                  aria-label={`Skills de ${group.label}`}
+                >
+                  {group.skills.map((skill, si) => (
+                    <li
+                      key={skill}
+                      role="listitem"
+                      className="group flex items-center gap-5"
+                    >
+                      <span className="relative text-sm font-medium text-foreground transition-colors duration-200 group-hover:text-primary">
+                        {skill}
+                        {/* Hover underline */}
+                        <span
+                          aria-hidden="true"
+                          className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary transition-[width] duration-300 group-hover:w-full"
+                        />
+                      </span>
+                      {/* Dot separator — hidden after last item */}
+                      {si < group.skills.length - 1 && (
+                        <span
+                          aria-hidden="true"
+                          className="h-1 w-1 shrink-0 rounded-full bg-border"
+                        />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            {/* Bottom border of last row */}
+            <div className="border-t border-border/60" aria-hidden="true" />
+          </div>
         </div>
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {skillGroups.map((group) => (
-            <div key={group.label} className="reveal">
-              <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">
-                {group.label}
-              </h3>
-              <ul role="list" className="flex flex-col gap-2.5">
-                {group.skills.map((skill) => (
-                  <li key={skill} className="flex items-center gap-2 text-sm text-foreground">
-                    <span aria-hidden="true" className="h-1 w-1 shrink-0 rounded-full bg-primary" />
+        {/* ── Marquee strip — ambient horizontal scroll of all skills ── */}
+        <div
+          className="reveal mt-16 overflow-hidden"
+          aria-hidden="true"  /* decorative — content already in list above */
+        >
+          {/* Fade masks on left/right */}
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
+
+            {/* Scrolling track */}
+            <div className="flex items-center gap-8 [--marquee-duration:35s] motion-reduce:[animation-play-state:paused]">
+              <div className="animate-marquee flex shrink-0 items-center gap-8">
+                {[...allSkills, ...allSkills].map((skill, i) => (
+                  <span
+                    key={`${skill}-${i}`}
+                    className="flex shrink-0 items-center gap-8 font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground/30"
+                  >
                     {skill}
-                  </li>
+                    <span className="h-1 w-1 rounded-full bg-primary/30" />
+                  </span>
                 ))}
-              </ul>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
+
       </div>
     </section>
   )
 }
 
-/* ─── Project Cards ─── */
-function FeaturedCard({ project }: { project: Project }) {
+/* ─── Projects ─── */
+
+/** Individual project row — editorial list style inspired by Majd */
+function ProjectRow({
+  project,
+  index,
+}: {
+  project: Project
+  index: number
+}) {
+  const [open, setOpen] = useState(false)
+  const num = String(index + 1).padStart(2, '0')
+
   return (
-    <a
-      href={project.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Ver ${project.name} no GitHub`}
-      className="group relative col-span-full flex flex-col gap-8 overflow-hidden rounded-xl border border-border bg-card/40 p-8 transition-all duration-500 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_0_50px_-15px_var(--color-primary)] md:flex-row md:items-end md:justify-between md:p-12"
+    <div
+      className={`group border-t border-border/60 transition-colors duration-300 ${
+        project.featured ? 'border-primary/20' : ''
+      }`}
     >
-      <div className="flex-1">
-        <span className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
-          Projeto em destaque
+      {/* ── Main row ── */}
+      <div
+        className="flex cursor-pointer items-center gap-5 py-5 sm:py-6"
+        onClick={() => setOpen((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setOpen((v) => !v)
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        aria-controls={`project-desc-${index}`}
+      >
+        {/* Index number */}
+        <span className="hidden w-8 shrink-0 font-mono text-xs text-muted-foreground/40 sm:block">
+          {num}
         </span>
-        <h3 className="mt-3 text-2xl font-black tracking-tight text-foreground sm:text-3xl">
+
+        {/* Featured badge */}
+        {project.featured && (
+          <span className="hidden shrink-0 rounded-full bg-primary/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-primary sm:inline-flex">
+            destaque
+          </span>
+        )}
+
+        {/* Title */}
+        <h3 className="flex-1 text-base font-bold tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary sm:text-lg md:text-xl">
           {project.name}
         </h3>
-        <p className="mt-4 max-w-lg text-base leading-7 text-muted-foreground">
-          {project.description}
-        </p>
-      </div>
 
-      <div className="flex flex-col items-start gap-4 md:items-end">
-        <div className="flex flex-wrap gap-2" role="list" aria-label="Tecnologias">
-          {project.technologies.map((tech) => (
+        {/* Tech pills — hidden on xs */}
+        <div className="hidden items-center gap-2 md:flex" role="list" aria-label="Tecnologias">
+          {project.technologies.slice(0, 3).map((tech) => (
             <span
               key={tech}
               role="listitem"
-              className="rounded-full border border-border bg-secondary/60 px-3 py-1 font-mono text-[11px] text-muted-foreground"
+              className="rounded-full border border-border/60 px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground"
             >
               {tech}
             </span>
           ))}
         </div>
-        <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-foreground transition-colors group-hover:text-primary">
-          Ver no GitHub
-          <ArrowUpRight
-            aria-hidden="true"
-            className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-          />
+
+        {/* Arrow toggle */}
+        <span
+          aria-hidden="true"
+          className={`ml-2 flex size-8 shrink-0 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-all duration-300 ${
+            open
+              ? 'border-primary/40 bg-primary/10 text-primary rotate-45'
+              : 'group-hover:border-primary/30 group-hover:text-primary'
+          }`}
+        >
+          <ArrowUpRight className="size-3.5" />
         </span>
       </div>
-    </a>
-  )
-}
 
-function ProjectCard({ project }: { project: Project }) {
-  return (
-    <a
-      href={project.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Ver ${project.name} no GitHub`}
-      className="group flex min-h-56 flex-col justify-between rounded-xl border border-border bg-card/20 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-card/50 hover:shadow-[0_8px_30px_-12px_var(--color-primary)]"
-    >
-      <div>
-        <div className="mb-8 flex items-start justify-between gap-4">
-          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-            / projeto
-          </span>
-          <ArrowUpRight
-            aria-hidden="true"
-            className="size-4 shrink-0 text-muted-foreground transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
-          />
+      {/* ── Expandable description panel ── */}
+      <div
+        id={`project-desc-${index}`}
+        className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+        aria-hidden={!open}
+      >
+        <div className="flex flex-col gap-6 pb-7 pl-0 sm:flex-row sm:items-end sm:justify-between sm:pl-[52px]">
+          {/* Description */}
+          <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
+            {project.description}
+          </p>
+
+          {/* Footer: all techs + GitHub link */}
+          <div className="flex shrink-0 flex-col items-start gap-3 sm:items-end">
+            {/* All tech pills on mobile */}
+            <div className="flex flex-wrap gap-1.5" role="list" aria-label="Todas as tecnologias">
+              {project.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  role="listitem"
+                  className="rounded-full border border-border/60 bg-secondary/30 px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              aria-label={`Ver ${project.name} no GitHub (abre em nova aba)`}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/20 px-4 py-2 font-mono text-xs font-medium text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary"
+            >
+              Ver no GitHub
+              <ArrowUpRight aria-hidden="true" className="size-3" />
+            </a>
+          </div>
         </div>
-        <h3 className="text-base font-bold tracking-tight text-foreground">
-          {project.name}
-        </h3>
-        <p className="mt-2.5 text-sm leading-6 text-muted-foreground">
-          {project.description}
-        </p>
       </div>
-
-      <div className="mt-6 flex flex-wrap gap-1.5" role="list" aria-label="Tecnologias">
-        {project.technologies.map((tech) => (
-          <span key={tech} role="listitem" className="font-mono text-[10px] text-muted-foreground/70">
-            #{tech}
-          </span>
-        ))}
-      </div>
-    </a>
+    </div>
   )
 }
 
 function Projects() {
-  const featured = projects.find((p) => p.featured)
-  const rest     = projects.filter((p) => !p.featured)
-
   return (
     <section id="projetos" className="border-t border-border/60">
       <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
-        <div className="reveal flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+
+        {/* ── Section header ── */}
+        <div className="reveal flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
               03 / Projetos
             </p>
-            <h2 className="mt-5 text-3xl font-black tracking-tight sm:text-4xl">
-              Trabalho selecionado.
+            <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
+              Trabalho
+              <br />
+              <span className="text-foreground/30">selecionado.</span>
             </h2>
           </div>
-          <p className="max-w-xs text-sm leading-6 text-muted-foreground">
-            Uma seleção de projetos que refletem minha curiosidade e forma de construir.
-          </p>
-        </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {featured && (
-            <div className="reveal col-span-full">
-              <FeaturedCard project={featured} />
+          <div className="flex flex-col items-start gap-3 sm:items-end">
+            <p className="max-w-xs text-right text-sm leading-6 text-muted-foreground">
+              {projects.length} projetos que refletem minha
+              forma de pensar e construir.
+            </p>
+            <a
+              href="https://github.com/matheus3881"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground underline-offset-4 transition-colors hover:text-primary hover:underline"
+            >
+              Ver todos no GitHub
+              <ArrowUpRight aria-hidden="true" className="size-3" />
+            </a>
           </div>
-          )}
-
-          {rest.map((project) => (
-            <div key={project.name} className="reveal">
-              <ProjectCard project={project} />
-            </div>
-          ))}
         </div>
+
+        {/* ── Project list ── */}
+        <div className="reveal mt-14">
+          {projects.map((project, i) => (
+            <ProjectRow key={project.name} project={project} index={i} />
+          ))}
+          {/* Closing border */}
+          <div className="border-t border-border/60" aria-hidden="true" />
+        </div>
+
       </div>
     </section>
   )
@@ -555,52 +870,120 @@ function Contact() {
   return (
     <section id="contato" className="border-t border-border/60">
       <div className="mx-auto max-w-6xl px-5 py-24 lg:px-8 lg:py-32">
-        <div className="reveal max-w-3xl">
+
+        {/* ── Header row: label + availability badge ── */}
+        <div className="reveal flex flex-wrap items-center justify-between gap-4">
           <p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">
             04 / Contato
           </p>
-          <h2 className="mt-5 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Vamos construir
-            <br />
-            algo bom.
-          </h2>
-          <p className="mt-6 max-w-md text-base leading-7 text-muted-foreground">
-            Tem uma ideia, projeto ou desafio interessante? Minha caixa de entrada
-            está aberta.
-          </p>
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/8 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-primary">
+            <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+              <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-primary opacity-70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+            </span>
+            Disponível para projetos
+          </span>
         </div>
 
-        <div className="reveal mt-12 flex flex-wrap gap-3">
-          <a
-            href="mailto:contato@matheus-santos.dev"
-            className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        {/* ── Display heading ── */}
+        <h2
+          className="reveal mt-8 font-black leading-[0.9] tracking-[-0.04em] text-foreground"
+          style={{ fontSize: 'clamp(3rem, 9vw, 7rem)' }}
+        >
+          Vamos construir
+          <br />
+          <span className="text-foreground/25">algo bom.</span>
+        </h2>
+
+        {/* ── Divider ── */}
+        <div className="reveal my-14 h-px w-full bg-border/60" aria-hidden="true" />
+
+        {/* ── Two-column: email CTA (left) + social links (right) ── */}
+        <div className="reveal grid gap-12 lg:grid-cols-[1fr_auto] lg:items-start lg:gap-20">
+
+          {/* Email block */}
+          <div className="flex flex-col gap-4">
+            <p className="text-sm leading-7 text-muted-foreground">
+              Tem uma ideia, projeto ou desafio interessante? Minha caixa de entrada está aberta.
+            </p>
+
+            {/* Email as hero-sized animated link */}
+            <a
+              href="mailto:contato@matheus-santos.dev"
+              className="group relative mt-2 inline-block w-fit"
+              aria-label="Enviar e-mail para contato@matheus-santos.dev"
+            >
+              <span
+                className="block font-display font-black leading-none tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary"
+                style={{ fontSize: 'clamp(1.1rem, 3vw, 2rem)' }}
+              >
+                contato@matheus-santos.dev
+              </span>
+              {/* Animated underline sweep */}
+              <span
+                aria-hidden="true"
+                className="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-full"
+              />
+            </a>
+
+            {/* Primary CTA button */}
+            <div className="mt-6">
+              <a
+                href="mailto:contato@matheus-santos.dev"
+                className="inline-flex items-center gap-2.5 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                <Mail aria-hidden="true" className="size-4" />
+                Enviar mensagem
+              </a>
+            </div>
+          </div>
+
+          {/* Social links — editorial list rows with arrow circles */}
+          <nav
+            aria-label="Redes sociais e perfis"
+            className="flex flex-col divide-y divide-border/60 border-y border-border/60 lg:min-w-[260px]"
           >
-            <Mail aria-hidden="true" className="size-4" />
-            Enviar mensagem
-          </a>
-          <a
-            href="https://www.linkedin.com/in/matheus-santos-de-lima-84916830b"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/40 hover:text-primary focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            <FaLinkedin aria-hidden="true" className="size-4" />
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/matheus3881"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors duration-200 hover:border-primary/40 hover:text-primary focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            <FaGithub aria-hidden="true" className="size-4" />
-            GitHub
-          </a>
+            {[
+              {
+                label: 'GitHub',
+                sub: '@matheus3881',
+                href: 'https://github.com/matheus3881',
+              },
+              {
+                label: 'LinkedIn',
+                sub: 'Matheus Santos',
+                href: 'https://www.linkedin.com/in/matheus-santos-de-lima-84916830b',
+              },
+              {
+                label: 'E-mail',
+                sub: 'contato@matheus-santos.dev',
+                href: 'mailto:contato@matheus-santos.dev',
+              },
+            ].map(({ label, sub, href }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="group flex items-center justify-between gap-4 py-4 transition-colors duration-200"
+              >
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-sm font-semibold text-foreground transition-colors duration-200 group-hover:text-primary">
+                    {label}
+                  </span>
+                  <span className="font-mono text-[11px] text-muted-foreground/70">{sub}</span>
+                </div>
+                <span
+                  aria-hidden="true"
+                  className="flex size-8 shrink-0 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/40 group-hover:bg-primary/8 group-hover:text-primary"
+                >
+                  <ArrowUpRight className="size-3.5" />
+                </span>
+              </a>
+            ))}
+          </nav>
         </div>
 
-        <p className="reveal mt-8 font-mono text-xs text-muted-foreground">
-          contato@matheus-santos.dev
-        </p>
       </div>
     </section>
   )
@@ -610,15 +993,51 @@ function Contact() {
 function Footer() {
   return (
     <footer className="border-t border-border/60">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-8">
-        <span suppressHydrationWarning>© {new Date().getFullYear()} Matheus Santos. Feito com Next.js e Tailwind.</span>
-        <nav aria-label="Links do rodapé" className="flex items-center gap-5">
-          {NAV_LINKS.map(([label, href]) => (
-            <a key={href} href={href} className="transition-colors hover:text-foreground">
-              {label}
-            </a>
-          ))}
-        </nav>
+      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+        <div className="flex flex-col gap-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+
+          {/* Left: copyright + stack */}
+          <div className="flex flex-col gap-0.5">
+            <span
+              className="font-mono text-xs font-semibold text-foreground/70"
+              suppressHydrationWarning
+            >
+              © {new Date().getFullYear()} Matheus Santos
+            </span>
+            <span className="font-mono text-[10px] text-muted-foreground/40">
+              Feito com Next.js &amp; Tailwind CSS
+            </span>
+          </div>
+
+          {/* Center: nav links */}
+          <nav aria-label="Links do rodapé" className="flex flex-wrap items-center gap-5">
+            {NAV_LINKS.map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground/50 transition-colors hover:text-foreground"
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Right: back to top */}
+          <a
+            href="#home"
+            aria-label="Voltar ao topo da página"
+            className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground/50 transition-colors hover:text-foreground"
+          >
+            Topo
+            <span
+              aria-hidden="true"
+              className="flex size-6 items-center justify-center rounded-full border border-border/60 text-xs transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/40 group-hover:text-primary"
+            >
+              ↑
+            </span>
+          </a>
+
+        </div>
       </div>
     </footer>
   )
