@@ -252,11 +252,45 @@ function Header() {
   )
 }
 
+/* ─── Hero image parallax hook ─── */
+function useHeroParallax() {
+  const sectionRef = useCallback((node: HTMLElement | null) => {
+    if (!node) return
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) return
+
+    const onMove = (e: MouseEvent) => {
+      const { left, top, width, height } = node.getBoundingClientRect()
+      const x = ((e.clientX - left) / width  - 0.5) * 20   // ±10px
+      const y = ((e.clientY - top)  / height - 0.5) * 20
+      node.style.setProperty('--px', `${x}px`)
+      node.style.setProperty('--py', `${y}px`)
+    }
+    const onLeave = () => {
+      node.style.setProperty('--px', '0px')
+      node.style.setProperty('--py', '0px')
+    }
+
+    node.addEventListener('mousemove', onMove)
+    node.addEventListener('mouseleave', onLeave)
+    return () => {
+      node.removeEventListener('mousemove', onMove)
+      node.removeEventListener('mouseleave', onLeave)
+    }
+  }, [])
+
+  return sectionRef
+}
+
 /* ─── Hero ─── */
 function Hero() {
+  const parallaxRef = useHeroParallax()
+
   return (
     <section
       id="home"
+      ref={parallaxRef}
+      style={{ '--px': '0px', '--py': '0px' } as React.CSSProperties}
       className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between overflow-hidden border-b border-border/60 px-5 py-10 lg:px-8 lg:py-12"
     >
       {/* ── Top row: badge (left) + role tag (right) ── */}
@@ -285,36 +319,55 @@ function Hero() {
         </div>
       </div>
 
-      {/* ── Display name — fills the center of the viewport ── */}
-      <div className="mx-auto w-full max-w-6xl flex-1 flex flex-col justify-center py-6 lg:py-0">
-        <h1
-          className="animate-fade-up font-black leading-[0.88] tracking-[-0.055em] text-foreground"
-          style={{
-            fontSize: 'clamp(3.8rem, 13.5vw, 11rem)',
-            animationDelay: '120ms',
-          }}
-          aria-label="Matheus Santos"
-        >
-          {/* "Matheus" in full opacity, "Santos" faded — classic editorial split */}
-          <span className="block">Matheus</span>
-          <span className="block text-foreground/20">Santos</span>
-        </h1>
+      {/* ── Main content: text (left) + photo (right) ── */}
+      <div className="mx-auto w-full max-w-6xl flex-1 flex flex-col justify-center gap-10 py-6 lg:flex-row lg:items-center lg:gap-16 lg:py-0">
 
-        {/* Thin rule between name and bottom info bar */}
-        <div
-          className="animate-fade-up mt-8 h-px w-full bg-border/50 lg:mt-10"
-          style={{ animationDelay: '180ms' }}
-          aria-hidden="true"
-        />
-      </div>
+        {/* ── Text column ── */}
+        <div className="flex flex-col lg:flex-1">
+          {/* Mobile photo — compact, above the name */}
+          <div className="mb-8 flex items-center gap-4 lg:hidden">
+            <div className="hero-img-wrapper h-16 w-16 overflow-hidden rounded-full border border-border/60">
+              <img
+                src="/placeholder-user.jpg"
+                alt="Foto de Matheus Santos"
+                className="h-full w-full object-cover object-top"
+                width={64}
+                height={64}
+              />
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60">
+                Desenvolvedor
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60">
+                Full Stack · IA
+              </span>
+            </div>
+          </div>
 
-      {/* ── Bottom info bar: description · social handle · CTAs ── */}
-      <div className="mx-auto w-full max-w-6xl">
-        <div className="flex flex-col gap-6 pt-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10 lg:pt-0">
+          {/* H1 — display type */}
+          <h1
+            className="animate-fade-up font-black leading-[0.88] tracking-[-0.055em] text-foreground"
+            style={{
+              fontSize: 'clamp(3.2rem, 11vw, 8.5rem)',
+              animationDelay: '120ms',
+            }}
+            aria-label="Matheus Santos"
+          >
+            <span className="block">Matheus</span>
+            <span className="block text-foreground/20">Santos</span>
+          </h1>
+
+          {/* Thin rule */}
+          <div
+            className="animate-fade-up mt-8 h-px w-full bg-border/50 lg:mt-10"
+            style={{ animationDelay: '180ms' }}
+            aria-hidden="true"
+          />
 
           {/* Description */}
           <p
-            className="animate-fade-up max-w-sm text-sm leading-[1.8] text-muted-foreground lg:max-w-xs"
+            className="animate-fade-up mt-7 max-w-sm text-sm leading-[1.8] text-muted-foreground"
             style={{ animationDelay: '220ms' }}
           >
             Desenvolvo produtos digitais e sistemas inteligentes que transformam
@@ -322,42 +375,10 @@ function Hero() {
             <span className="font-semibold text-foreground">IA e LLMs</span>.
           </p>
 
-          {/* Social handle — centered on desktop */}
-          <div
-            className="animate-fade-up hidden flex-col items-center gap-2 lg:flex"
-            style={{ animationDelay: '260ms' }}
-            aria-label="Handle nas redes sociais"
-          >
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40">
-              @matheus3881
-            </span>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://github.com/matheus3881"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub de Matheus Santos"
-                className="font-mono text-[11px] text-muted-foreground/50 underline-offset-4 transition-colors hover:text-primary hover:underline"
-              >
-                GitHub
-              </a>
-              <span className="h-1 w-1 rounded-full bg-border" aria-hidden="true" />
-              <a
-                href="https://www.linkedin.com/in/matheus-santos-de-lima-84916830b"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn de Matheus Santos"
-                className="font-mono text-[11px] text-muted-foreground/50 underline-offset-4 transition-colors hover:text-primary hover:underline"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
-
           {/* CTA buttons */}
           <div
-            className="animate-fade-up flex flex-wrap items-center gap-3"
-            style={{ animationDelay: '300ms' }}
+            className="animate-fade-up mt-8 flex flex-wrap items-center gap-3"
+            style={{ animationDelay: '280ms' }}
           >
             <a
               href="#projetos"
@@ -377,22 +398,18 @@ function Hero() {
               <Mail aria-hidden="true" className="size-4" />
             </a>
           </div>
-        </div>
 
-        {/* Mobile-only: role tag + social links below CTAs */}
-        <div
-          className="animate-fade-up mt-8 flex flex-col gap-3 border-t border-border/40 pt-6 md:hidden"
-          style={{ animationDelay: '340ms' }}
-        >
-          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60">
-            Full Stack · IA · Automação
-          </span>
-          <div className="flex items-center gap-4">
+          {/* Social links */}
+          <div
+            className="animate-fade-up mt-6 flex items-center gap-4"
+            style={{ animationDelay: '340ms' }}
+          >
             <a
               href="https://github.com/matheus3881"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[11px] text-muted-foreground/50 transition-colors hover:text-primary"
+              aria-label="GitHub de Matheus Santos"
+              className="font-mono text-[11px] text-muted-foreground/50 underline-offset-4 transition-colors hover:text-primary hover:underline"
             >
               GitHub
             </a>
@@ -401,10 +418,111 @@ function Hero() {
               href="https://www.linkedin.com/in/matheus-santos-de-lima-84916830b"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[11px] text-muted-foreground/50 transition-colors hover:text-primary"
+              aria-label="LinkedIn de Matheus Santos"
+              className="font-mono text-[11px] text-muted-foreground/50 underline-offset-4 transition-colors hover:text-primary hover:underline"
             >
               LinkedIn
             </a>
+            <span className="ml-1 font-mono text-[10px] text-muted-foreground/30">
+              @matheus3881
+            </span>
+          </div>
+        </div>
+
+        {/* ── Photo column — desktop only ── */}
+        <div
+          className="hidden lg:flex lg:w-[340px] lg:shrink-0 xl:w-[380px]"
+          aria-hidden="true"
+        >
+          {/*
+            Parallax: translate by CSS custom props set by mousemove handler.
+            Transition keeps it smooth between frames.
+          */}
+          <div
+            className="w-full"
+            style={{
+              transform: 'translate(var(--px), var(--py))',
+              transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+          >
+            {/*
+              Outer decorative frame: thin border + offset accent line.
+              position:relative lets us add pseudo-decorations as siblings.
+            */}
+            <div className="relative">
+              {/* Decorative corner accent — top-left */}
+              <span
+                className="animate-fade-up absolute -left-3 -top-3 h-10 w-px bg-primary/40"
+                style={{ animationDelay: '500ms' }}
+              />
+              <span
+                className="animate-fade-up absolute -left-3 -top-3 h-px w-10 bg-primary/40"
+                style={{ animationDelay: '500ms' }}
+              />
+              {/* Decorative corner accent — bottom-right */}
+              <span
+                className="animate-fade-up absolute -bottom-3 -right-3 h-10 w-px bg-primary/40"
+                style={{ animationDelay: '600ms' }}
+              />
+              <span
+                className="animate-fade-up absolute -bottom-3 -right-3 h-px w-10 bg-primary/40"
+                style={{ animationDelay: '600ms' }}
+              />
+
+              {/*
+                hero-img-wrapper  → clip-path curtain reveal (CSS class)
+                hero-img-float    → continuous gentle float loop (CSS class)
+                overflow-hidden   → keeps the clip-path crisp at all times
+              */}
+              <div className="hero-img-wrapper overflow-hidden rounded-sm border border-border/40">
+                <div className="hero-img-float">
+                  {/*
+                    ─ SWAP YOUR PHOTO HERE ─────────────────────────────────
+                    Replace "/placeholder-user.jpg" with your actual image.
+                    Recommended: square or 3:4 portrait, min 760px wide.
+                    Example: src="/foto.jpg"
+                    ────────────────────────────────────────────────────────
+                  */}
+                  <img
+                    src="/JE3A8420_05698.jpg"
+                    alt="Foto de Matheus Santos — desenvolvedor Full Stack"
+                    className="aspect-[3/4] w-full object-cover object-top grayscale-[15%]"
+                    width={380}
+                    height={507}
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+
+              {/* Name tag overlay — bottom of the photo */}
+              <div
+                className="animate-fade-up absolute bottom-4 left-4 flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-3 py-1.5 backdrop-blur-sm"
+                style={{ animationDelay: '1200ms' }}
+              >
+                <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+                  <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-primary opacity-70" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+                </span>
+                <span className="font-mono text-[10px] text-foreground/70">
+                  matheus.dev
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Bottom social row — desktop only ── */}
+      <div className="mx-auto hidden w-full max-w-6xl lg:block">
+        <div className="flex items-center justify-between pt-4">
+          <div
+            className="animate-fade-up flex items-center gap-5"
+            style={{ animationDelay: '380ms' }}
+          >
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40">
+              @matheus3881
+            </span>
           </div>
         </div>
       </div>
