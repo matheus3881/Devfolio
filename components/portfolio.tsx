@@ -384,7 +384,7 @@ function Hero() {
               />
             </a>
             <a
-              href="mailto:contato@matheus-santos.dev"
+              href="mailto:santoslimamsl102@gmail.com"
               className="inline-flex items-center gap-2 rounded-lg border border-border/80 bg-transparent px-6 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:border-primary/50 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               Contato
@@ -1020,15 +1020,15 @@ function Contact() {
 
             {/* Email as hero-sized animated link */}
             <a
-              href="mailto:contato@matheus-santos.dev"
+              href="mailto:santoslimamsl102@gmail.com"
               className="group relative mt-2 inline-block w-fit"
-              aria-label="Enviar e-mail para contato@matheus-santos.dev"
+              aria-label="Enviar e-mail para santoslimamsl102@gmail.com"
             >
               <span
                 className="block font-display font-black leading-none tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary"
                 style={{ fontSize: 'clamp(1.1rem, 3vw, 2rem)' }}
               >
-                contato@matheus-santos.dev
+                santoslimamsl102@gmail.com
               </span>
               {/* Animated underline sweep */}
               <span
@@ -1040,7 +1040,7 @@ function Contact() {
             {/* Primary CTA button */}
             <div className="mt-6">
               <a
-                href="mailto:contato@matheus-santos.dev"
+                href="mailto:santoslimamsl102@gmail.com"
                 className="inline-flex items-center gap-2.5 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 <Mail aria-hidden="true" className="size-4" />
@@ -1067,8 +1067,8 @@ function Contact() {
               },
               {
                 label: 'E-mail',
-                sub: 'contato@matheus-santos.dev',
-                href: 'mailto:contato@matheus-santos.dev',
+                sub: 'santoslimamsl102@gmail.com',
+                href: 'mailto:santoslimamsl102@gmail.com',
               },
             ].map(({ label, sub, href }) => (
               <a
@@ -1114,9 +1114,6 @@ function Footer() {
               suppressHydrationWarning
             >
               © {new Date().getFullYear()} Matheus Santos
-            </span>
-            <span className="font-mono text-[10px] text-muted-foreground/40">
-              Feito com Next.js &amp; Tailwind CSS
             </span>
           </div>
 
