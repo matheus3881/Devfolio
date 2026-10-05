@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { ArrowUpRight, Mail, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowUpRight, Calendar as CalendarIcon, Mail, Menu, Moon, Sun, X } from "lucide-react";
+import Calendar from "./agendamento";
+
 
 /* ─── Types ─── */
 type Project = {
@@ -374,6 +376,16 @@ function Hero() {
                 className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
             </a>
+            <button
+              type="button"
+              data-cal-link="matheus-santos-de-lima-gvijas/15min"
+              data-cal-namespace="15min"
+              data-cal-config='{"layout":"month_view"}'
+              className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-border/80 bg-transparent px-6 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:border-primary/50 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              <CalendarIcon aria-hidden="true" className="size-4 text-primary" />
+              Agendar reunião
+            </button>
             <a
               href="mailto:santoslimamsl102@gmail.com"
               className="inline-flex items-center gap-2 rounded-lg border border-border/80 bg-transparent px-6 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:border-primary/50 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
@@ -1031,6 +1043,8 @@ function Contact() {
               Tem uma ideia, projeto ou desafio interessante? Minha caixa de entrada está aberta.
             </p>
 
+            
+
             {/* Email as hero-sized animated link */}
             <a
               href="mailto:santoslimamsl102@gmail.com"
@@ -1050,11 +1064,21 @@ function Contact() {
               />
             </a>
 
-            {/* Primary CTA button */}
-            <div className="mt-6">
+            {/* Primary CTA buttons */}
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                data-cal-link="matheus-santos-de-lima-gvijas/15min"
+                data-cal-namespace="15min"
+                data-cal-config='{"layout":"month_view"}'
+                className="inline-flex cursor-pointer items-center gap-2.5 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                <CalendarIcon aria-hidden="true" className="size-4" />
+                Agendar reunião (15 min)
+              </button>
               <a
                 href="mailto:santoslimamsl102@gmail.com"
-                className="inline-flex items-center gap-2.5 rounded-lg bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="inline-flex items-center gap-2.5 rounded-lg border border-border/80 bg-transparent px-7 py-3.5 text-sm font-semibold text-foreground transition-all duration-200 hover:border-primary/50 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 <Mail aria-hidden="true" className="size-4" />
                 Enviar mensagem
@@ -1167,6 +1191,7 @@ export function Portfolio() {
 
   return (
     <>
+      <Calendar/>
       <Header />
       <main id="main-content">
         <Hero />
